@@ -1,4 +1,3 @@
-//@ts-nocheck
 import { FC, useEffect, useState } from 'react';
 import { Document, Page } from 'react-pdf';
 
@@ -9,6 +8,10 @@ import { Nullish } from '@/types';
 
 import 'react-pdf/dist/esm/Page/AnnotationLayer.css';
 import 'react-pdf/dist/esm/Page/TextLayer.css';
+
+const MOBILE_BREAKPOINT = 768;
+const MOBILE_PDF_WIDTH = 300;
+const DESKTOP_PDF_WIDTH = 400;
 
 const options = {
   cMapUrl: '/cmaps/',
@@ -22,15 +25,17 @@ type Props = {
 
 export const PDFViewer: FC<Props> = ({ pdfUrl = '', isLoading = false }) => {
   const [viewportHeight, setViewportHeight] = useState(window.innerHeight);
-  const [pdfWidth, setPdfWidth] = useState(window.innerWidth < 768 ? 300 : 400);
+  const [pdfWidth, setPdfWidth] = useState(
+    window.innerWidth < MOBILE_BREAKPOINT ? MOBILE_PDF_WIDTH : DESKTOP_PDF_WIDTH,
+  );
 
   const containerHeight = calculateContainerHeight(viewportHeight);
 
   useEffect(() => {
     const handleResize = () => {
-      const viewportHeight = getViewportHeight();
+      const viewportHeight = getViewportHeight() || window.innerHeight;
       setViewportHeight(viewportHeight);
-      setPdfWidth(viewportHeight < 768 ? 300 : 400);
+      setPdfWidth(window.innerWidth < MOBILE_BREAKPOINT ? MOBILE_PDF_WIDTH : DESKTOP_PDF_WIDTH);
     };
 
     window.addEventListener('resize', handleResize);

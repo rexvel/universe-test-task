@@ -1,7 +1,7 @@
 import { useState, useEffect, useCallback } from 'react';
-import { PdfFileData } from '@/types';
 import { useIndexedDB } from '@/hooks';
 import { indexedDbConfig } from '@/constants';
+import { PdfFileData } from '@/types';
 
 export const useSavedPDFs = () => {
   const { add, getAll, isReady } = useIndexedDB<PdfFileData>(indexedDbConfig);
