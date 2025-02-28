@@ -19,3 +19,18 @@ export const formatDate = (dateString: string) => {
     second: '2-digit',
   }).format(date);
 };
+
+export const getViewportHeight = () => {
+  if (window) {
+    const viewportHeight = window.innerHeight;
+    return viewportHeight;
+  }
+};
+
+export const calculateContainerHeight = (viewportHeight: number) => {
+  return viewportHeight < 700
+    ? 'h-[250px]'
+    : viewportHeight < 900
+      ? 'h-[350px] md:h-[450px]'
+      : 'h-[400px] md:h-[600px]';
+};
