@@ -1,10 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { pdfjs } from 'react-pdf';
-import App from './App.tsx';
+import App from './App';
+import { ThemeProvider, ErrorBoundary } from '@/components';
 import './index.css';
-import { ThemeProvider } from './components/common/theme-provider.tsx';
-import { ErrorBoundary } from './components/common/ErrorBoundary.tsx';
 
 pdfjs.GlobalWorkerOptions.workerSrc = '/pdf.worker.min.mjs';
 

@@ -50,8 +50,11 @@ export const PDFViewer: FC<Props> = ({ pdfUrl = '', isLoading = false }) => {
         <Card className={`w-full ${containerHeight} flex items-center justify-center`}>
           <CardContent>
             <p className="text-gray-500 text-center">Converting your text to PDF...</p>
-            <div className="mt-4 flex justify-center">
-              <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-gray-900"></div>
+            <div className="mt-4 flex justify-center" aria-hidden="true">
+              <div
+                className="animate-spin rounded-full h-8 w-8 border-b-2 border-gray-900"
+                aria-label="Converting document"
+              ></div>
             </div>
           </CardContent>
         </Card>
@@ -78,9 +81,15 @@ export const PDFViewer: FC<Props> = ({ pdfUrl = '', isLoading = false }) => {
   return (
     <div
       className={`flex flex-col items-center md:h-auto md:overflow-visible ${containerHeight} overflow-auto`}
+      role="region"
+      aria-label="PDF preview"
     >
       <Document
-        loading={<div className="text-center py-4">Loading PDF...</div>}
+        loading={
+          <div className="text-center py-4" aria-live="polite">
+            Loading PDF...
+          </div>
+        }
         file={file}
         options={options}
       >
@@ -91,6 +100,7 @@ export const PDFViewer: FC<Props> = ({ pdfUrl = '', isLoading = false }) => {
             className="mx-auto"
             renderTextLayer={false}
             renderAnnotationLayer={false}
+            aria-label="PDF document, page 1"
           />
         </div>
       </Document>

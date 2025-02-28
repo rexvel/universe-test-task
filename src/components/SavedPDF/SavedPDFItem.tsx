@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { AriaRole } from 'react';
 import { PdfFileData } from '@/types';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components';
 import { formatDate } from '@/lib/utils';
@@ -6,13 +6,24 @@ import { formatDate } from '@/lib/utils';
 interface SavedPDFItemProps {
   entry: PdfFileData;
   onClick: (entry: PdfFileData) => void;
+  role?: AriaRole;
 }
 
 export const SavedPDFItem: React.FC<SavedPDFItemProps> = ({ entry, onClick }) => {
   const displayedDate = formatDate(entry.creationDate);
 
   return (
-    <Card onClick={() => onClick(entry)} className="w-full mb-4 last:mb-0">
+    <Card
+      onClick={() => onClick(entry)}
+      tabIndex={0}
+      aria-label={`Open PDF file preview: ${entry.name}`}
+      onKeyDown={e => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          onClick(entry);
+          e.preventDefault();
+        }
+      }}
+    >
       <CardHeader>
         <CardTitle className="text-lg">{entry.name}</CardTitle>
       </CardHeader>

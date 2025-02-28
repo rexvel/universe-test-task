@@ -10,10 +10,15 @@ interface SavedPDFListProps {
 
 export const SavedPDFList: React.FC<SavedPDFListProps> = ({ savedPdfData, onEntryClick }) => {
   return (
-    <ScrollArea className="h-[200px] rounded-md border p-4 flex-start">
-      <div className="flex flex-col items-start">
+    <ScrollArea
+      className="h-[200px] rounded-md border p-4 flex-start"
+      aria-label="Scrollable list of saved PDFs"
+    >
+      <div className="flex flex-col items-start" role="list">
         {savedPdfData.map((pdfData: PdfFileData) => (
-          <SavedPDFItem key={pdfData.id} entry={pdfData} onClick={onEntryClick} />
+          <div key={pdfData.id} className="w-full mb-4" role="listitem">
+            <SavedPDFItem entry={pdfData} onClick={onEntryClick} />
+          </div>
         ))}
       </div>
     </ScrollArea>
