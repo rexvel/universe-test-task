@@ -1,12 +1,11 @@
-//@ts-nocheck
-
-import React from 'react';
+import { FC } from 'react';
 import { Document, Page } from 'react-pdf';
 import 'react-pdf/dist/esm/Page/AnnotationLayer.css';
 import 'react-pdf/dist/esm/Page/TextLayer.css';
-import { DEFAULT_PAGE_NUMBER } from '@/constants';
 import { encodePdfDataUrl } from '@/lib/utils';
 import { Card, CardContent } from '@/components';
+import { DEFAULT_PAGE_NUMBER } from '@/constants';
+import { Nullish } from '@/types';
 
 const options = {
   cMapUrl: '/cmaps/',
@@ -14,10 +13,10 @@ const options = {
 };
 
 type Props = {
-  pdfUrl: string;
+  pdfUrl: string | Nullish;
 };
 
-export const PDFViewer: React.FC<Props> = ({ pdfUrl }) => {
+export const PDFViewer: FC<Props> = ({ pdfUrl = '' }) => {
   if (!pdfUrl) {
     return (
       <div className="w-1/2 p-4 flex justify-center">

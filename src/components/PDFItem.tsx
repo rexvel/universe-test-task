@@ -1,19 +1,14 @@
-import React from 'react';
+import { FC } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components';
+import { PdfFileData } from '@/types';
+import { formatDate } from '@/lib/utils';
 
-export const SavedPDFItem: React.FC = ({ entry, onClick = () => {} }) => {
-  const formatDate = (dateString: string) => {
-    const date = new Date(dateString);
-    return new Intl.DateTimeFormat('uk-UA', {
-      day: '2-digit',
-      month: '2-digit',
-      year: 'numeric',
-      hour: '2-digit',
-      minute: '2-digit',
-      second: '2-digit',
-    }).format(date);
-  };
+interface SavedPDFItemProps {
+  entry: PdfFileData;
+  onClick: (entry: PdfFileData) => void;
+}
 
+export const SavedPDFItem: FC<SavedPDFItemProps> = ({ entry, onClick }) => {
   const displayedDate = formatDate(entry.creationDate);
 
   return (

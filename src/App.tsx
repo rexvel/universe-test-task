@@ -5,17 +5,16 @@ import { ConversionForm, Layout, PDFViewer, SavedPDF, SavedPDFList } from '@/com
 
 const App = () => {
   const [pdfUrl, setPdfUrl] = useState<string | null>();
-  const { savedPDFs, addPdf, loadSavedPDF, isReady } = useSavedPDFs();
+  const { savedPDFs, addPdf } = useSavedPDFs();
   const { convertText } = useConvertToPdf({ addPdf, setPdfUrl });
 
-  const handleSavedEntryClick = () => {
-    // mocked handler
-    // TODO: load saved pdf
+  const handleSavedEntryClick = ({ pdfUrl }: any) => {
+    setPdfUrl(pdfUrl);
   };
 
   return (
     <Layout>
-      <main className="flex h-screen">
+      <main className="flex items-center justify-center h-screen">
         <div className="w-1/2 p-4 flex flex-col">
           <ConversionForm onConvert={convertText} />
           <SavedPDF savedPdfData={savedPDFs} className="mt-4">
