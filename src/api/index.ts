@@ -33,7 +33,7 @@ export const convertToPdf = async (text: string): Promise<string | null> => {
     const base64String = btoa(String.fromCharCode(...new Uint8Array(buffer)));
     return base64String;
   } catch (error) {
-    console.error('Error converting to PDF:', error);
-    throw error;
+    console.error('Error converting to PDF:', handleErrorMessage(error));
+    return null;
   }
 };
