@@ -42,6 +42,18 @@ export default defineConfig({
       ],
     }),
   ],
+  build: {
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          'react-pdf': ['react-pdf'],
+          'pdfjs-dist': ['pdfjs-dist'],
+          dexie: ['dexie'],
+        },
+      },
+    },
+    chunkSizeWarningLimit: 400,
+  },
   resolve: {
     alias: {
       '@': '/src',
