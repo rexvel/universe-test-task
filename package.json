@@ -11,7 +11,9 @@
     "prepare": "husky",
     "format": "prettier --write \"src/**/*.{ts,tsx,js,jsx,json,css,md}\"",
     "build-report": "pnpm run build -- --report",
-    "visualize-bundle": "vite-bundle-visualizer"
+    "visualize-bundle": "vite-bundle-visualizer",
+    "test:watch": "vitest --watch",
+    "test:coverage": "vitest --coverage"
   },
   "dependencies": {
     "@hookform/resolvers": "^4.1.2",
