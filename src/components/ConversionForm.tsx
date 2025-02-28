@@ -8,10 +8,16 @@ interface FormValues {
 
 interface Props {
   onConvert: (text: string) => void;
+  isLoading?: boolean;
+  apiError?: string | null;
 }
 
-export const ConversionForm: React.FC<Props> = ({ onConvert }) => {
-  const [error, setError] = useState<string | null>(null);
+export const ConversionForm: React.FC<Props> = ({
+  onConvert,
+  isLoading = false,
+  apiError = null,
+}) => {
+  const [validationError, setValidationError] = useState<string | null>(null);
   const {
     register,
     handleSubmit,
@@ -24,13 +30,15 @@ export const ConversionForm: React.FC<Props> = ({ onConvert }) => {
 
   const onSubmit = (data: FormValues) => {
     if (data.text.trim() === '') {
-      setError('Text cannot be empty');
+      setValidationError('Text cannot be empty');
       console.error(errors);
     } else {
-      setError(null);
+      setValidationError(null);
       onConvert(data.text);
     }
   };
+
+  const displayError = validationError || apiError;
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
@@ -39,11 +47,12 @@ export const ConversionForm: React.FC<Props> = ({ onConvert }) => {
           {...register('text')}
           placeholder="Enter your text here"
           className="flex-grow w-full"
+          disabled={isLoading}
         />
-        {error && <p className="text-red-500 text-sm mt-1">{error}</p>}
+        {displayError && <p className="text-red-500 text-sm mt-1">{displayError}</p>}
       </div>
-      <Button type="submit" className="w-full">
-        Convert text to pdf
+      <Button type="submit" className="w-full" disabled={isLoading}>
+        {isLoading ? 'Converting...' : 'Convert text to pdf'}
       </Button>
     </form>
   );
