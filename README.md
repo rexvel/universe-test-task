@@ -66,5 +66,5 @@ pnpm dev
 **Запуск тестів**
 
 ```sh
-pnpm test
+pnpm test:watch
 ```
