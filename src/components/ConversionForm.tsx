@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { Textarea } from '@/components';
-import { Button } from '@/components';
+import { Textarea, Button } from '@/components';
 
 interface FormValues {
   text: string;
@@ -36,7 +35,11 @@ export const ConversionForm: React.FC<Props> = ({ onConvert }) => {
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
       <div>
-        <Textarea {...register('text')} placeholder="Enter your text here" className="flex-grow w-full" />
+        <Textarea
+          {...register('text')}
+          placeholder="Enter your text here"
+          className="flex-grow w-full"
+        />
         {error && <p className="text-red-500 text-sm mt-1">{error}</p>}
       </div>
       <Button type="submit" className="w-full">
