@@ -1,8 +1,9 @@
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import { pdfjs } from 'react-pdf';
-import App from './App.tsx';
-import ErrorBoundary from './components/ErrorBoundary';
+
+import App from '@/App.tsx';
+import { ErrorBoundary } from '@/components';
 
 import 'react-pdf/dist/Page/TextLayer.css';
 import 'react-pdf/dist/Page/AnnotationLayer.css';

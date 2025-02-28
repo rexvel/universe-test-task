@@ -1,7 +1,7 @@
 import { useState } from 'react';
 
-import { useSavedPDFs, useConvertToPdf } from './hooks';
-import { ConversionForm, Layout, PDFViewer, SavedPDFItem } from './components';
+import { useSavedPDFs, useConvertToPdf } from '@/hooks';
+import { ConversionForm, Layout, PDFViewer, SavedPDFItem } from '@/components';
 
 const App = () => {
   const [pdfUrl, setPdfUrl] = useState<string | null>();

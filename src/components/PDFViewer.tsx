@@ -30,6 +30,8 @@ export const PDFViewer: React.FC<Props> = ({ pdfUrl }) => {
     );
   }
   const file = encodePdfDataUrl(pdfUrl);
+
+  // TODO memo options
   return (
     <div className="flex flex-col items-center  h-[600px]">
       <Document

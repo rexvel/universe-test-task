@@ -1,4 +1,4 @@
-import { convertToPdf } from '../api';
+import { convertToPdf } from '@/api';
 
 interface UseConvertToPdfProps {
   addPdf: (pdf: any) => Promise<void>;
