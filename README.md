@@ -23,19 +23,31 @@
 - [Prettier](https://github.com/prettier/prettier)
 - [Commitlint](https://github.com/conventional-changelog/commitlint)
 - [Lint-staged](https://github.com/okonet/lint-staged)
+- [Dexie](https://github.com/dfahlgren/Dexie.js)
 
 ### Структура проєкту
 
 - **src**
   - **api**: модуль для API-запитів
   - **components**: React компоненти
+    - **common**: загальні компоненти
+    - **SavedPDF**: компоненти для відображення збережених PDF
   - **hooks**: кастомні хуки
   - **lib**: утилітні функції
   - **test**: тести для API та основних хуків
+  - **types**: типи для проекту
 
-### Вимоги до середовища
+### Вимоги до runtime
 
 Потребує Node.js версії 22 або вище.
+
+## Особливості проєкту
+
+- Використання IndexedDB для збереження PDF файлів
+- Наявність елементів SEO оптимізації
+- Адаптивний дизайн
+- Наявність елементів доступності (ARIA-атрибути)
+- Темна та світла теми
 
 ### Локальний запуск
 
