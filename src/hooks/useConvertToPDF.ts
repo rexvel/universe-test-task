@@ -1,8 +1,9 @@
 import { useState } from 'react';
 import { convertToPdf } from '@/api';
+import { PdfFileData } from '@/types';
 
 interface UseConvertToPdfProps {
-  addPdf: (pdf: any) => Promise<void>;
+  addPdf: (pdf: PdfFileData) => Promise<void>;
   setPdfUrl: (url: string | null) => void;
 }
 
