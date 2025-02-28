@@ -9,7 +9,7 @@ interface SavedPDFItemProps {
   role?: AriaRole;
 }
 
-export const SavedPDFItem: React.FC<SavedPDFItemProps> = ({ entry, onClick, role }) => {
+export const SavedPDFItem: React.FC<SavedPDFItemProps> = ({ entry, onClick }) => {
   const displayedDate = formatDate(entry.creationDate);
 
   return (
