@@ -41,19 +41,24 @@ export const ConversionForm: React.FC<Props> = ({
   const displayError = validationError || apiError;
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
-      <div>
-        <Textarea
-          {...register('text')}
-          placeholder="Enter your text here"
-          className="flex-grow w-full"
-          disabled={isLoading}
-        />
-        {displayError && <p className="text-red-500 text-sm mt-1">{displayError}</p>}
-      </div>
-      <Button type="submit" className="w-full" disabled={isLoading}>
-        {isLoading ? 'Converting...' : 'Convert text to pdf'}
-      </Button>
-    </form>
+    <section className="p-2 md:p-4">
+      <article>
+        <h2 className="text-xl font-semibold mb-3">Convert Text to PDF</h2>
+        <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+          <div>
+            <Textarea
+              {...register('text')}
+              placeholder="Enter your text here"
+              className="flex-grow w-full"
+              disabled={isLoading}
+            />
+            {displayError && <p className="text-red-500 text-sm mt-1">{displayError}</p>}
+          </div>
+          <Button type="submit" className="w-full" disabled={isLoading}>
+            {isLoading ? 'Converting...' : 'Convert text to pdf'}
+          </Button>
+        </form>
+      </article>
+    </section>
   );
 };
