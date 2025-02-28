@@ -23,6 +23,7 @@ export const SavedPDFItem: React.FC<SavedPDFItemProps> = ({ entry, onClick }) =>
           e.preventDefault();
         }
       }}
+      className="cursor-pointer hover:shadow-md transition-shadow duration-200"
     >
       <CardHeader>
         <CardTitle className="text-lg">{entry.name}</CardTitle>
