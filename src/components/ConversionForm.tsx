@@ -54,7 +54,11 @@ export const ConversionForm: React.FC<Props> = ({
             />
             {displayError && <p className="text-red-500 text-sm mt-1">{displayError}</p>}
           </div>
-          <Button type="submit" className="w-full" disabled={isLoading}>
+          <Button
+            type="submit"
+            className="w-full bg-[#4A6BF5] text-white hover:bg-[#3A5BE5]"
+            disabled={isLoading}
+          >
             {isLoading ? 'Converting...' : 'Convert text to pdf'}
           </Button>
         </form>

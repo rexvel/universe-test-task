@@ -1,18 +1,19 @@
-import { StrictMode } from 'react';
-import { createRoot } from 'react-dom/client';
+import React from 'react';
+import ReactDOM from 'react-dom/client';
 import { pdfjs } from 'react-pdf';
-
-import { ErrorBoundary } from '@/components';
-import App from '@/App.tsx';
-
+import App from './App.tsx';
 import './index.css';
+import { ThemeProvider } from './components/common/theme-provider.tsx';
+import { ErrorBoundary } from './components/common/ErrorBoundary.tsx';
 
 pdfjs.GlobalWorkerOptions.workerSrc = '/pdf.worker.min.mjs';
 
-createRoot(document.getElementById('root')!).render(
-  <StrictMode>
+ReactDOM.createRoot(document.getElementById('root')!).render(
+  <React.StrictMode>
     <ErrorBoundary>
-      <App />
+      <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
+        <App />
+      </ThemeProvider>
     </ErrorBoundary>
-  </StrictMode>,
+  </React.StrictMode>,
 );
