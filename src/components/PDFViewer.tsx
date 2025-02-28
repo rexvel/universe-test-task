@@ -39,7 +39,7 @@ export const PDFViewer: FC<Props> = ({ pdfUrl = '', isLoading = false }) => {
         window.innerWidth < MOBILE_BREAKPOINT ? MOBILE_PDF_WIDTH : DESKTOP_PDF_PREVIEW_WIDTH,
       );
     };
-
+    // TODO Use ResizeObserver instead
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
   }, []);
