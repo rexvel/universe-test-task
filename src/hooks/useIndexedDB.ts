@@ -9,6 +9,10 @@ interface UseIndexedDBOptions {
   version?: number;
 }
 
+const checkDB = (isReady: boolean) => {
+  if (!isReady) throw new Error('Database not ready');
+};
+
 export function useIndexedDB<T extends object>({
   dbName,
   storeName,
@@ -36,17 +40,13 @@ export function useIndexedDB<T extends object>({
 
     const initDb = async () => {
       try {
-        if (db.isOpen()) {
-          if (isMounted) {
-            setIsReady(true);
-            setError(null);
-          }
-        } else {
+        if (!db.isOpen()) {
           await db.open();
-          if (isMounted) {
-            setIsReady(true);
-            setError(null);
-          }
+        }
+
+        if (isMounted) {
+          setIsReady(true);
+          setError(null);
         }
       } catch (err) {
         console.error('Failed to open DB:', err);
@@ -66,36 +66,21 @@ export function useIndexedDB<T extends object>({
 
   const add = useCallback(
     async (item: T) => {
-      if (!isReady) throw new Error('Database not ready');
       return await db.table(storeName).add(item);
     },
     [db, isReady, storeName],
   );
 
+  // TODO add remove certain / all items
+
   const getAll = useCallback(async () => {
-    if (!isReady) throw new Error('Database not ready');
+    checkDB(isReady);
     return await db.table(storeName).toArray();
   }, [db, isReady, storeName]);
 
-  const getById = useCallback(
-    async (id: number) => {
-      if (!isReady) throw new Error('Database not ready');
-      return await db.table(storeName).get(id);
-    },
-    [db, isReady, storeName],
-  );
-
-  const update = useCallback(
-    async (id: number, changes: Partial<T>) => {
-      if (!isReady) throw new Error('Database not ready');
-      return await db.table(storeName).update(id, changes);
-    },
-    [db, isReady, storeName],
-  );
-
   const remove = useCallback(
     async (id: number) => {
-      if (!isReady) throw new Error('Database not ready');
+      checkDB(isReady);
       return await db.table(storeName).delete(id);
     },
     [db, isReady, storeName],
@@ -104,8 +89,6 @@ export function useIndexedDB<T extends object>({
   return {
     add,
     getAll,
-    getById,
-    update,
     remove,
     isReady,
     error,
