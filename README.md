@@ -1,54 +1,58 @@
-# React + TypeScript + Vite
+# Simple PDF Converter
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Простий React додаток для перетворення введеного тексту у PDF документ.
 
-Currently, two official plugins are available:
+### Основний стек технологій
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- [TypeScript](https://github.com/microsoft/TypeScript)
+- [React](https://github.com/facebook/react)
+- [Vite](https://github.com/vitejs/vite)
+- [Vitest](https://github.com/vitest-dev/vitest)
+- [React Testing Library](https://github.com/testing-library/react-testing-library)
+- [pnpm](https://github.com/pnpm/pnpm)
+- [Tailwind CSS](https://github.com/tailwindlabs/tailwindcss)
+- [PostCSS](https://github.com/postcss/postcss)
+- [RadixUI](https://github.com/radix-ui/primitives)
+- [Shadcn](https://github.com/shadcn-ui/ui)
+- [React-pdf](https://github.com/wojtekmaj/react-pdf)
+- [React Hook Form](https://github.com/react-hook-form/react-hook-form)
 
-## Expanding the ESLint configuration
+### Додаткові інструменти
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- [ESLint](https://github.com/eslint/eslint)
+- [Prettier](https://github.com/prettier/prettier)
+- [Commitlint](https://github.com/conventional-changelog/commitlint)
+- [Lint-staged](https://github.com/okonet/lint-staged)
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+### Структура проєкту
+
+- **src**
+  - **api**: модуль для API-запитів
+  - **components**: React компоненти
+  - **hooks**: кастомні хуки
+  - **lib**: утилітні функції
+  - **test**: тести для API та основних хуків
+
+### Вимоги до середовища
+
+Потребує Node.js версії 22 або вище.
+
+### Локальний запуск
+
+**Встановлення залежностей**
+
+```sh
+pnpm install
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+**Запуск додатку (dev режим)**
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+```sh
+pnpm dev
+```
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
+**Запуск тестів**
+
+```sh
+pnpm test
 ```
