@@ -1,17 +1,28 @@
-import js from '@eslint/js';
 import globals from 'globals';
 import reactHooks from 'eslint-plugin-react-hooks';
 import reactRefresh from 'eslint-plugin-react-refresh';
 import tseslint from 'typescript-eslint';
-import airbnb from 'eslint-config-airbnb-typescript';
 import prettier from 'eslint-plugin-prettier';
 import eslintPluginPrettier from 'eslint-config-prettier';
 import importPlugin from 'eslint-plugin-import';
 
-export default tseslint.config(
-  { ignores: ['dist'] },
+import eslintRecommended from '@eslint/js/src/configs/recommended.js';
+
+export default [
+  eslintRecommended,
+  tseslint.configs.recommended,
+  eslintPluginPrettier,
+
   {
-    extends: [js.configs.recommended, eslintPluginPrettier],
+    files: ['**/*.ts', '**/*.tsx'],
+    languageOptions: {
+      parser: tseslint.parser,
+    },
+    plugins: {
+      '@typescript-eslint': tseslint.plugin,
+    },
+  },
+  {
     files: ['**/*.{ts,tsx}'],
     languageOptions: {
       ecmaVersion: 2020,
@@ -48,8 +59,14 @@ export default tseslint.config(
     },
     settings: {
       'import/resolver': {
-        typescript: {},
+        typescript: {
+          alwaysTryTypes: true,
+          project: ['./tsconfig.app.json', './tsconfig.node.json'],
+        },
+        node: {
+          extensions: ['.js', '.jsx', '.ts', '.tsx'],
+        },
       },
     },
   },
-);
+];
