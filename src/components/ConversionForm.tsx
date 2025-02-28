@@ -41,9 +41,11 @@ export const ConversionForm: React.FC<Props> = ({
   const displayError = validationError || apiError;
 
   return (
-    <section className="p-2 md:p-4">
+    <section className="p-2 md:p-4" aria-labelledby="conversion-form-title">
       <article>
-        <h2 className="text-xl font-semibold mb-3">Convert Text to PDF</h2>
+        <h2 id="conversion-form-title" className="text-xl font-semibold mb-3">
+          Convert Text to PDF
+        </h2>
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
           <div>
             <Textarea
@@ -51,13 +53,21 @@ export const ConversionForm: React.FC<Props> = ({
               placeholder="Enter your text here"
               className="flex-grow w-full"
               disabled={isLoading}
+              aria-label="Text to convert to PDF"
+              aria-required="true"
+              aria-invalid={!!displayError}
             />
-            {displayError && <p className="text-red-500 text-sm mt-1">{displayError}</p>}
+            {displayError && (
+              <p id="form-error" className="text-red-500 text-sm mt-1">
+                {displayError}
+              </p>
+            )}
           </div>
           <Button
             type="submit"
             className="w-full bg-[#4A6BF5] text-white hover:bg-[#3A5BE5]"
             disabled={isLoading}
+            aria-busy={isLoading}
           >
             {isLoading ? 'Converting...' : 'Convert text to pdf'}
           </Button>

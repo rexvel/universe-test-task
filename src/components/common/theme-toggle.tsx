@@ -8,7 +8,6 @@ export function ThemeToggle() {
   const { theme, setTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
 
-  // Avoid hydration mismatch by only rendering after component is mounted
   useEffect(() => {
     setMounted(true);
   }, []);
@@ -17,18 +16,22 @@ export function ThemeToggle() {
     return null;
   }
 
+  const isDarkMode = theme === 'dark';
+
   return (
     <Button
       variant="outline"
       size="icon"
-      onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
-      aria-label="Toggle theme"
+      onClick={() => setTheme(isDarkMode ? 'light' : 'dark')}
+      aria-label={isDarkMode ? 'Switch to light mode' : 'Switch to dark mode'}
+      aria-pressed={isDarkMode}
     >
-      {theme === 'dark' ? (
-        <Sun className="h-[1.2rem] w-[1.2rem]" />
+      {isDarkMode ? (
+        <Sun className="h-[1.2rem] w-[1.2rem]" aria-hidden="true" />
       ) : (
-        <Moon className="h-[1.2rem] w-[1.2rem]" />
+        <Moon className="h-[1.2rem] w-[1.2rem]" aria-hidden="true" />
       )}
+      <span className="sr-only">{isDarkMode ? 'Switch to light mode' : 'Switch to dark mode'}</span>
     </Button>
   );
 }
