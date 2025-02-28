@@ -20,13 +20,15 @@ type Props = {
 export const PDFViewer: React.FC<Props> = ({ pdfUrl }) => {
   if (!pdfUrl) {
     return (
-      <Card className="w-full h-[500px] flex items-center justify-center">
-        <CardContent>
-          <p className="text-gray-500 text-center">
-            Select or create a PDF file to preview its content
-          </p>
-        </CardContent>
-      </Card>
+      <div className="w-1/2 p-4 flex justify-center">
+        <Card className="w-full h-[500px] flex items-center justify-center">
+          <CardContent>
+            <p className="text-gray-500 text-center">
+              Select or create a PDF file to preview its content
+            </p>
+          </CardContent>
+        </Card>
+      </div>
     );
   }
   const file = encodePdfDataUrl(pdfUrl);
