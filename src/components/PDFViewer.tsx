@@ -1,11 +1,13 @@
 import { FC } from 'react';
 import { Document, Page } from 'react-pdf';
-import 'react-pdf/dist/esm/Page/AnnotationLayer.css';
-import 'react-pdf/dist/esm/Page/TextLayer.css';
+
 import { encodePdfDataUrl } from '@/lib/utils';
 import { Card, CardContent } from '@/components';
 import { DEFAULT_PAGE_NUMBER } from '@/constants';
 import { Nullish } from '@/types';
+
+import 'react-pdf/dist/esm/Page/AnnotationLayer.css';
+import 'react-pdf/dist/esm/Page/TextLayer.css';
 
 const options = {
   cMapUrl: '/cmaps/',

@@ -5,8 +5,6 @@ import { pdfjs } from 'react-pdf';
 import App from '@/App.tsx';
 import { ErrorBoundary } from '@/components';
 
-import 'react-pdf/dist/Page/TextLayer.css';
-import 'react-pdf/dist/Page/AnnotationLayer.css';
 import './index.css';
 
 pdfjs.GlobalWorkerOptions.workerSrc = new URL(
