@@ -26,10 +26,6 @@ export const convertToPdf = async (text: string): Promise<string | null> => {
 
     const buffer = await response.arrayBuffer();
 
-    if (!buffer || buffer.byteLength === 0) {
-      throw new Error('Received empty response from server');
-    }
-
     const base64String = btoa(String.fromCharCode(...new Uint8Array(buffer)));
     return base64String;
   } catch (error) {
