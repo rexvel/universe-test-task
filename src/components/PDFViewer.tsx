@@ -11,7 +11,7 @@ import 'react-pdf/dist/esm/Page/TextLayer.css';
 
 const MOBILE_BREAKPOINT = 768;
 const MOBILE_PDF_WIDTH = 300;
-const DESKTOP_PDF_WIDTH = 400;
+const DESKTOP_PDF_PREVIEW_WIDTH = 400;
 
 const options = {
   cMapUrl: '/cmaps/',
@@ -26,7 +26,7 @@ type Props = {
 export const PDFViewer: FC<Props> = ({ pdfUrl = '', isLoading = false }) => {
   const [viewportHeight, setViewportHeight] = useState(window.innerHeight);
   const [pdfWidth, setPdfWidth] = useState(
-    window.innerWidth < MOBILE_BREAKPOINT ? MOBILE_PDF_WIDTH : DESKTOP_PDF_WIDTH,
+    window.innerWidth < MOBILE_BREAKPOINT ? MOBILE_PDF_WIDTH : DESKTOP_PDF_PREVIEW_WIDTH,
   );
 
   const containerHeight = calculateContainerHeight(viewportHeight);
@@ -35,7 +35,9 @@ export const PDFViewer: FC<Props> = ({ pdfUrl = '', isLoading = false }) => {
     const handleResize = () => {
       const viewportHeight = getViewportHeight() || window.innerHeight;
       setViewportHeight(viewportHeight);
-      setPdfWidth(window.innerWidth < MOBILE_BREAKPOINT ? MOBILE_PDF_WIDTH : DESKTOP_PDF_WIDTH);
+      setPdfWidth(
+        window.innerWidth < MOBILE_BREAKPOINT ? MOBILE_PDF_WIDTH : DESKTOP_PDF_PREVIEW_WIDTH,
+      );
     };
 
     window.addEventListener('resize', handleResize);

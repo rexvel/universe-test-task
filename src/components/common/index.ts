@@ -3,5 +3,7 @@ export * from './textarea';
 export * from './card';
 export * from './form';
 export * from './layout';
+export * from './theme-provider';
+export * from './theme-toggle';
 export * from './scroll-area';
 export * from './ErrorBoundary';
